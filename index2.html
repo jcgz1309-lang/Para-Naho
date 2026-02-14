@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosa Blanca de frente</title>
+    <link rel="icon" href="ico.jpg" type="image/png">
+    <link rel="stylesheet" href="arriba.css">
+</head>
+<body>
+
+    <div class="sidebar-toggle" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Opciones</h3>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index1.html">👁️ Ver de horizontal</a></li>
+            <li><a href="#" onclick="location.reload()">🔄 Reiniciar Flor</a></li>
+            <li><a href="Login/index.html">🚪 Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="glow-estatico"></div>
+        <div class="escena-rotando">
+            <div class="rose" id="rose"></div>
+        </div>
+    </div>
+
+    <script>
+        // menu
+       function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+}
+
+// Esto evita que al tocar el menú el navegador se confunda en móviles xd si no me muero
+document.querySelectorAll('.sidebar-menu a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        // Si el enlace es solo para reiniciar, evitamos que haga otras cosas
+        if(link.textContent.includes("Reiniciar")) {
+            e.preventDefault();
+            location.reload();
+        }
+        // cierra menu
+        document.getElementById('sidebar').classList.remove('active');
+    });
+});
+
+        // Lógica de la rosa
+        const rose = document.getElementById('rose');
+        const totalPetals = 60; 
+
+        for (let i = 0; i < totalPetals; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            const angle = i * 137.5; 
+            const ratio = i / totalPetals;
+            
+            petal.style.setProperty('--index', i);
+            petal.style.setProperty('--angle', `${angle}deg`);
+            const spread = 5 + (ratio * 85); 
+            petal.style.setProperty('--spread', `${spread}deg`);
+            petal.style.setProperty('--size', `${0.6 + ratio * 1.1}`);
+            petal.style.setProperty('--delay', `${i * 0.07}s`);
+            
+            rose.appendChild(petal);
+        }
+    </script>
+</body>
+</html>

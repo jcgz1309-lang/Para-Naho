@@ -1,0 +1,209 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Importante para que los animales no creen scroll */
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.login-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a0f08; 
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que el fondo se expanda sin estirarse mal */
+    z-index: 0;
+}
+
+/* --- ESTILO DE LOS PERSONAJES --- */
+.character {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none; /* Permite hacer clic al login aunque un animal esté cerca */
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); /* Les da profundidad */
+}
+
+.bear {
+    bottom: -2%; /* Lo sentamos en el borde inferior */
+    left: 2%;
+    width: 25vw; /* Tamaño basado en el ancho de pantalla */
+    max-width: 450px;
+}
+
+.frog {
+    bottom: 8%;
+    left: 28%;
+    width: 6vw;
+    max-width: 100px;
+}
+
+/* Imagen de las cabras juntas */
+.goat-white {
+    bottom: 2%;
+    right: 3%;
+    width: 22vw;
+    max-width: 400px;
+}
+
+.shark-bee {
+    top: 8%;
+    right: 15%;
+    width: 15vw;
+    max-width: 250px;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* --- CAJA DE LOGIN --- */
+.login-box {
+    position: relative;
+    z-index: 10;
+    background-color: rgba(62, 39, 21, 0.85); /* Tono madera oscuro */
+    backdrop-filter: blur(8px); /* Efecto cristalino moderno */
+    border: 4px solid #b18d5e;
+    border-radius: 20px;
+    padding: 40px;
+    width: 90%;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+.welcome-text {
+    font-size: 2.5rem;
+    color: #f3e5ab;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    letter-spacing: 2px;
+}
+
+/* --- ESTILO DE INPUTS --- */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    color: #f3e5ab;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #5d3a1a;
+    border-radius: 10px;
+    background-color: #fdf5e6;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.login-button {
+    width: 100%;
+    background-color: #b18d5e;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #5d3a1a;
+    transition: all 0.2s;
+}
+
+.login-button:hover {
+    background-color: #8b5a2b;
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #5d3a1a;
+}
+
+/* --- ANIMACIÓN --- */
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+/* --- CONFIGURACIÓN PARA MÓVILES (Pantallas menores a 768px) --- */
+@media (max-width: 768px) {
+    
+    .login-box {
+        width: 85%; /* La caja ocupa casi todo el ancho */
+        padding: 25px;
+        max-width: 320px;
+    }
+
+    .welcome-text {
+        font-size: 1.8rem; /* Texto más pequeño en el móvil */
+    }
+
+    /* Reposicionamos los animales para que no estorben al escribir */
+    
+    .bear {
+        width: 45vw; /* Oso más pequeño */
+        left: -5%;
+        bottom: 0;
+        opacity: 0.8; /* Un poco de transparencia para no distraer */
+    }
+
+    .frog {
+        width: 15vw;
+        left: 5%;
+        bottom: 25%; /* Subimos la rana para que se vea sobre el oso */
+    }
+
+    .goat-white {
+        width: 40vw;
+        right: -5%;
+        bottom: 0;
+    }
+
+    .shark-bee {
+        width: 30vw;
+        top: 2%;
+        right: 5%;
+    }
+}
+
+/* --- CONFIGURACIÓN PARA PANTALLAS MUY PEQUEÑAS (Celulares mini) --- */
+@media (max-width: 480px) {
+    .login-box {
+        padding: 20px;
+        background-color: rgba(62, 39, 21, 0.95); /* Menos transparencia para leer mejor */
+    }
+
+    .welcome-text {
+        font-size: 1.5rem;
+    }
+
+    /* En pantallas muy pequeñas, a veces es mejor ocultar algunos animales 
+       para que el usuario pueda concentrarse en el login */
+    .frog {
+        display: none; 
+    }
+}
+
+/* --- AJUSTE DE LA IMAGEN DE FONDO --- */
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 'cover' asegura que el bosque siempre llene la pantalla */
+    object-fit: cover; 
+    z-index: 0;
+}
