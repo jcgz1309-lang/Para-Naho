@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Esto redirige a tu archivo de la rosa
             // Asegúrate de que el archivo de la rosa se llame exactamente "index.html"
-            window.location.href = '../index1.html'; 
+            window.location.href = 'index1.html'; 
             
         } else {
             errorMessage.textContent = 'Usuario o contraseña incorrectos.';
@@ -28,4 +28,5 @@ document.addEventListener('DOMContentLoaded', () => {
             passwordInput.value = ''; 
         }
     });
+
 });
