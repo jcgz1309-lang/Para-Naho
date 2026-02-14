@@ -99,6 +99,8 @@ body {
     transform-style: preserve-3d;
     transform: rotateX(-20deg);
     animation: rotateScene 20s linear infinite;
+    /* Mejora la fluidez del giro */
+    perspective: 1000px;
 }
 
 .rose {
@@ -120,6 +122,10 @@ body {
     box-shadow: inset 0 -15px 25px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.2);
     animation: bloom 6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     animation-delay: var(--delay);
+    /* ESTO ELIMINA LOS TIRONES EN MÓVILES */
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .petal::before {
@@ -153,6 +159,7 @@ body {
         left: -100%;
         padding-top: 100px;
         z-index: 10001;
+        
     }
 
     .sidebar-menu li { margin: 25px 0; }
@@ -173,5 +180,11 @@ body {
     .petal {
         width: calc(45px * var(--size));
         height: calc(65px * var(--size));
+        /* Simplificamos la sombra para que el procesador no sufra */
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .rose {
+        will-change: transform;
     }
 }
